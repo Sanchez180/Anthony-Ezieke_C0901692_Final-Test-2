@@ -1,0 +1,71 @@
+
+
+<html>
+	<font size="8" color="green">Final test lab</font><br><br>
+	Number of rows: <input type="text" id="t1" /><br><br>
+	Number of cols: <input type="text" id="t2" /><br><br>
+	<button id="b1" onclick="generateTable()">Generate Table</button><br><br>
+	<button id="b2" onclick="addColumn()">Add Column</button>
+	<button id="b3" onclick="addRow()">Add Row</button>
+
+
+    <script language="javascript">
+        var b1 = document.getElementById("b1");
+        var b2 = document.getElementById("b2");
+        var b3 = document.getElementById("b3");
+
+        function generateTable() {
+            var rows = parseInt(document.getElementById("t1").value);
+            var cols = parseInt(document.getElementById("t2").value);
+            var table = "<table border='1'>";
+            
+            for (var i = 0; i < rows; i++) {
+                table += "<tr>";
+                for (var j = 0; j < cols; j++) {
+                    table += "<td>Cell</td>";
+                }
+                table += "</tr>";
+            }
+            
+            table += "</table>";
+            
+var buttonsAndScriptContent = "";
+document.querySelectorAll("button, script").forEach(function(element) {
+    buttonsAndScriptContent += element.outerHTML;
+});
+
+
+    document.documentElement.innerHTML = table + buttonsAndScriptContent;
+
+
+            document.getElementById("tableContainer").innerHTML = table;
+            
+        
+            document.getElementById("t1").style.display = "none";
+            document.getElementById("t2").style.display = "none";
+            b1.style.display = "none";
+        }
+
+        function addColumn() {
+            var table = document.querySelector("table");
+            var rowCount = table.rows.length;
+            
+            for (var i = 0; i < rowCount; i++) {
+                var cell = document.createElement("td");
+                cell.innerHTML = "row";
+                table.rows[i].appendChild(cell);
+            }
+        }
+
+        function addRow() {
+            var table = document.querySelector("table");
+            var row = table.insertRow(-1);
+            var colCount = table.rows[0].cells.length;
+            
+            for (var i = 0; i < colCount; i++) {
+                var cell = row.insertCell(i);
+                cell.innerHTML = "Cell";
+            }
+        }
+    </script>
+</html>
